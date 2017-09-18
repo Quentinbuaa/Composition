@@ -21,7 +21,7 @@ def create_label_matrix(column =1, row = 100, nominal = [1, 2, 3, 4, 5]):
         matrix.append(row)
     return matrix
 
-def _merge_matrix(matrix_1, matrix_2):
+def merge_matrix(matrix_1, matrix_2):
     if not len(matrix_1) == len(matrix_2):
         raise Exception("In _merge_matrix: the column dimension is not the same")
     else:
@@ -61,11 +61,11 @@ def create_training_label_matrix(num_target_class = 1,  num_training_instances =
 def create_testing_label_matrix(num_target_class = 1,  num_testing_instances =100):
     return create_label_matrix(num_target_class , num_testing_instances)
 
-def generate_training_dataset(data_set):
-    generate_dataset("training.arff", data_set)
+def generate_training_dataset(filename, data_set):
+    generate_dataset(filename, data_set)
 
-def generate_testing_dataset(data_set):
-    generate_dataset("testing.arff", data_set)
+def generate_testing_dataset(filename, data_set):
+    generate_dataset(filename, data_set)
 
 
 
@@ -80,10 +80,10 @@ def main():
     matrix_4 = create_testing_label_matrix(1, num_testing_instances)
 
     try:
-        training_dataset = _merge_matrix(matrix_1, matrix_2)
-        testing_dataset = _merge_matrix(matrix_3, matrix_4)
-        generate_training_dataset(training_dataset)
-        generate_testing_dataset(testing_dataset)
+        training_dataset = merge_matrix(matrix_1, matrix_2)
+        testing_dataset = merge_matrix(matrix_3, matrix_4)
+        generate_training_dataset("training.arff", training_dataset)
+        generate_testing_dataset("testing.arff", testing_dataset)
     except Exception as e:
         print(e.args)
         exit(-1)
