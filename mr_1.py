@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from generate_testcase import *
+import sys
 
 def MR_1(a = 1, b = 1, matrix=[[1]]):
     row = len(matrix)
@@ -13,9 +14,9 @@ def MR_1(a = 1, b = 1, matrix=[[1]]):
         follow_up_matrix.append(row)
     return follow_up_matrix
 
-def main():
-    a = 3.1 # the slope
-    b = 2.2 # the interception
+def main(a, b):
+    #a = a # the slope
+    #b = b # the interception
 
     num_attribute = 4  # number of attribute
     num_training_instances = 100  # number of training samples
@@ -46,4 +47,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(float(sys.argv[1]), float(sys.argv[2]))
